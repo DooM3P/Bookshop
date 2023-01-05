@@ -1,2 +1,2 @@
 # Bookshop
-Projet de gestion de libraiirie sous Java (Spring boot/ Maven) ; testé avec Postman
+Projet de gestion de librairie sous Java (Spring boot/ Maven) ; testé avec Postman
