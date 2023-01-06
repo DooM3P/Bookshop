@@ -35,13 +35,14 @@ public class BookServiceImpl implements BookService{
     }
     @Override
     public Book saveBook(Book book){
-        Book _book = new Book();
-        _book.setTitle(book.getTitle());
-        _book.setAuthor(book.getAuthor());
-        _book.setPrice(book.getPrice());
-        bookDAO.save(_book);
-        return _book;
-        //bookDAO.save(book); // plus rapide mais bon...
+        //Book _book = new Book();
+        //_book.setTitle(book.getTitle());
+        //_book.setAuthor(book.getAuthor());
+        //_book.setPrice(book.getPrice());
+        //_book.setCategory();
+        //bookDAO.save(_book);
+        //return _book;
+        return bookDAO.save(book); // plus rapide mais bon...
     }
 
     @Override
