@@ -15,19 +15,20 @@ public class Book {
     @Column(name = "price")
     private float price;
 
+    @Column(name = "available")
+    private boolean available = true;
+
     //Constructeur
     public Book(String title, String author, float price) {
         this.title = title;
         this.author = author;
         this.price = price;
+        this.available = true;
     }
-
     public Book() {
     }
 
     //Getters and setters
-
-
     public Long getId() {
         return id;
     }
@@ -58,5 +59,12 @@ public class Book {
 
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 }
