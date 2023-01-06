@@ -3,6 +3,8 @@ package com.example.Bookshop.controller;
 import com.example.Bookshop.models.Book;
 import com.example.Bookshop.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,19 +17,23 @@ public class BookController {
     private BookService bookService;
 
     @GetMapping(path = "/")
-    public List<Book> getBooks() {
-        return bookService.getBooks();
+    public ResponseEntity<List<Book>> getBooks(){
+        try {
+            List<Book> books = bookService.getBooks();
+            return new ResponseEntity<>(books, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
     }
 
     @PostMapping(path = "/")
-    @ResponseBody
-    public void savedBook(@RequestBody Book book){
-            //@RequestParam(value = "Title", defaultValue = "Fondation") String title,
-            //@RequestParam(value = "Author", defaultValue = "Isaac Asimov") String author,
-            //@RequestParam(value = "Price", defaultValue = "18") float price
-        //Book book = new Book(title, author, price);
-        bookService.saveBook(book);
-        System.out.println(book.getTitle()+" saved");
+    public ResponseEntity<Book> saveBook(@RequestBody Book book) {
+        try {
+            return new ResponseEntity<>(bookService.saveBook(book), HttpStatus.CREATED);
+        }
+        catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping(path = "/{id}")
