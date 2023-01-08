@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface BookDAO extends CrudRepository<Book, Long> {
     List<Book> findByTitle(String title);
+
     List<Book> findByCategory(Category category);
 
 }

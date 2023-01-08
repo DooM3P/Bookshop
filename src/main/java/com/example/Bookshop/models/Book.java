@@ -20,7 +20,7 @@ public class Book implements Serializable {
     private float price;
 
     @ManyToOne
-    @JoinColumn(name="ID_CATEGORY")
+    @JoinColumn(name="ID_CATEGORY", nullable = false)
     private Category category;
 
     @Column(name = "available")
@@ -89,6 +89,10 @@ public class Book implements Serializable {
 
     public Category getCategory() {
         return category;
+    }
+
+    public Long getBookCategory() {
+        return category.getCode();
     }
 
 }

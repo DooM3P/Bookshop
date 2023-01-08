@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
 
+
 @Entity
 @Table(name = "category")
 public class Category implements Serializable {
