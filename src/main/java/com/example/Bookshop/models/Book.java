@@ -27,18 +27,12 @@ public class Book implements Serializable {
     private boolean available = true;
 
     //Constructeur
-    public Book(String title, String author, float price) {
-        this.title = title;
-        this.author = author;
-        this.price = price;
-    }
-
     public Book(String title, String author, float price, Category category) {
         this.title = title;
         this.author = author;
         this.price = price;
         this.category = category;
-     }
+    }
 
     public Book() {
     }

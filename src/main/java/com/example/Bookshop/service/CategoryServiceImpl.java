@@ -23,6 +23,7 @@ public class CategoryServiceImpl implements CategoryService{
         }
     }
 
+
     @Override
     public Category getCategoryByCode(Long code) {
         Optional<Category> category = categoryDAO.findById(code);
@@ -36,6 +37,16 @@ public class CategoryServiceImpl implements CategoryService{
     @Override
     public Category saveCategory(Category category) {
         return categoryDAO.save(category);
+    }
+
+    @Override
+    public Category getCategoryByName(String name) {
+        Optional<Category> category = categoryDAO.findByName(name);
+        if(category.isPresent()) {
+            return category.get();
+        }else {
+            return null;
+        }
     }
 
     @Override

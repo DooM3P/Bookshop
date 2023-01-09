@@ -34,11 +34,8 @@ public class BookController {
     @PostMapping(path = "/")
     public ResponseEntity<Book> saveBook(@RequestBody Book book) {
         try {
-            if (book.getBookCategory() != null){
-                System.out.println(book.getBookCategory());
-            }
-            book.setCategory(categoryService.getCategoryByCode(book.getBookCategory()));
-            System.out.println(book.getCategory().getName());
+            //book.setCategory(categoryService.getCategoryByCode(book.getBookCategory()));
+            //book.setCategory(categoryService.getCategoryByName(book.getCategory().getName()));
             return new ResponseEntity<>(bookService.saveBook(book), HttpStatus.CREATED);
         }
         catch (Exception e){
