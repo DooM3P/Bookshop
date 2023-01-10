@@ -47,6 +47,14 @@ public class CategoryController {
         CategoryService.deleteCategoryByCode(code);
     }
 
+//    public ResponseEntity<Category> getCategoryByID(@PathVariable Long code){
+//        try{
+//            return new ResponseEntity<Category>(CategoryService.getCategories())
+//        }
+//    }
+//    public void deleteCategoryByCode(Long code){
+//
+//    }
     @DeleteMapping(path = "/")
     public void deleteAll() {
         CategoryService.deleteAll();

@@ -1,6 +1,7 @@
 package com.example.Bookshop.controller;
 
 import com.example.Bookshop.models.Book;
+import com.example.Bookshop.models.Category;
 import com.example.Bookshop.service.BookService;
 
 import com.example.Bookshop.service.CategoryService;
@@ -35,7 +36,9 @@ public class BookController {
     public ResponseEntity<Book> saveBook(@RequestBody Book book) {
         try {
             //book.setCategory(categoryService.getCategoryByCode(book.getBookCategory()));
-            //book.setCategory(categoryService.getCategoryByName(book.getCategory().getName()));
+            if (book.getCategory().getName()!= null){
+                book.setCategory(categoryService.getCategoryByName(book.getCategory().getName()));
+            }
             return new ResponseEntity<>(bookService.saveBook(book), HttpStatus.CREATED);
         }
         catch (Exception e){
@@ -56,6 +59,15 @@ public class BookController {
     @DeleteMapping(path = "/")
     public void deleteAll() {
         bookService.deleteAll();
+    }
+    @GetMapping(path= "/category")
+    public ResponseEntity<List<Book>> getBooksByCategory(@RequestBody Category category){
+        try{
+            return new ResponseEntity<List<Book>>(bookService.getBooksByCategory(category),HttpStatus.OK);
+        }
+        catch (Exception e){
+            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }

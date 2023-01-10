@@ -3,6 +3,7 @@ package com.example.Bookshop.service;
 import com.example.Bookshop.DAO.BookDAO;
 import com.example.Bookshop.models.Book;
 
+import com.example.Bookshop.models.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +40,7 @@ public class BookServiceImpl implements BookService{
         //_book.setTitle(book.getTitle());
         //_book.setAuthor(book.getAuthor());
         //_book.setPrice(book.getPrice());
-        //_book.setCategory();
+        //_book.setCategory(book.getCategory());
         //bookDAO.save(_book);
         //return _book;
         return bookDAO.save(book); // plus rapide mais bon...
@@ -53,6 +54,15 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
+    public List<Book> getBooksByCategory(Category category) {
+        List<Book> books = bookDAO.findByCategory(category);
+        if(!books.isEmpty()){
+            return books;
+        }
+        return null;
+    }
+
+    @Override
     public void deleteByID(Long id) {
         bookDAO.deleteById(id);
     }
@@ -61,5 +71,6 @@ public class BookServiceImpl implements BookService{
     public void deleteAll() {
         bookDAO.deleteAll();
     }
+
 
 }
